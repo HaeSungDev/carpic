@@ -8,13 +8,23 @@ block content
         | CarPic
       ul.right.hide-on-med-and-down
         li
-          a#uploadBtn.waves-effect.waves-light.btn.modal-trigger(href="#uploadModal")
+          a#uploadCarPicModalBtn.waves-effect.waves-light.btn.modal-trigger(href="#uploadModal")
             | upload car picture
             i.material-icons.right(style="margin-left: 5px") file_upload
 
   div#uploadModal.modal
-    div.modal-content
-      h4 자동차 사진 업로드 
-      p asdfsdfsd
-    div.modal-footer
-      a.modal-action.modal-close.waves-effect.waves-green.btn-flat(href="#!")
+    div.modal-content(style="text-align: center")
+      h3 자동차 사진 업로드 
+      div.file-field.input-field
+        div.btn
+          span Select Picture
+          input#selectFile(type="file" accept=".png,.jpg,.bmp,.gif")
+        div.file-path-wrapper
+          input#selectFileName.file-path.validate(type="text")
+        img#previewCarPic.upload-car-pic
+    div.modal-footer(style="text-align: center")
+      a#uploadCarPicBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
+        | UPLOAD
+      a.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
+        | CLOSE
+      

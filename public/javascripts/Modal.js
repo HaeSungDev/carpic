@@ -1,8 +1,12 @@
 const materialize = require('materialize-css');
 
 class Modal {
-    constructor(elem) {
-        this.instance = materialize.Modal.init(elem, {})[0];
+    constructor(elem, closeCallback) {
+        this.instance = materialize.Modal.init(elem, {
+            onCloseEnd : () => {
+                closeCallback();
+            }
+        })[0];
     }
 
     open() {
