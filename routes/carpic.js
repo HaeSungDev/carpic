@@ -1,12 +1,14 @@
 const express = require('express');
 const multer = require('multer');
 const fs = require('fs');
+const gm = require('gm');
 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'public/images')
     },
     filename: (req, file, cb) => {
+        req.file = file;
         cb(null, file.originalname);
     },
 });
@@ -19,14 +21,19 @@ const fileFilter = (req, file, cb) => {
     cb(null, isMatch)
 }
 
-const upload = multer({ storage: storage, fileFilter: fileFilter});
+const upload = multer({ storage: storage, fileFilter: fileFilter });
 const router = express.Router();
 
 router.post('/', upload.single('carpic'), (req, res, next) => {
-    if (req.isMatch) 
+    if (req.isMatch) {
+        gm('/public/images/' + req.file.originalname)
+            .resize(240, 240)
+            .noProfile()
+            .write('/public/thumbnail/' + req.file.originalname, (err) => console.log(err));
         res.sendStatus(200);
-    else
+    } else {
         res.sendStatus(415);
+    }
 });
 
 router.get('/', (req, res) => {
@@ -34,7 +41,10 @@ router.get('/', (req, res) => {
 
     fs.readdir('../public/thumbnail', (err, files) => {
         files.forEach((value) => {
-            carpicList.push(value);
+            carpicList.push({
+                thumbnail_path: '/public/images/' + value,
+                carpic_path: '/public/images/' + value,
+            });
         });
     });
 
