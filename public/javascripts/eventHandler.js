@@ -23,19 +23,24 @@ function setUploadEvent() {
 
     $('#uploadCarPicBtn').on('click', () => {
         const formData = new FormData();
-        
+
         formData.append('carpic', $('#selectFile')[0].files[0]);
 
         $.ajax({
-            url: 'car/picture',
+            url: 'cars/picture',
             data: formData,
             processData: false,
             contentType: false,
             method: 'POST',
-            type: 'POST',
-            success: function() {
-                alert('upload success!!');
-            }
+            type: 'POST'
+        }).done(() => {
+            alert('upload success!!');
+            uploadModal.close();
+        }).fail((jqXHR, textStatus) => {
+            if (jqXHR.status == 415)
+                alert('This file is not supported!!');
+            else 
+                alert('file upload fail!!');
         })
     })
 }
