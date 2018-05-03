@@ -35,16 +35,36 @@ function setUploadEvent() {
             type: 'POST'
         }).done(() => {
             alert('upload success!!');
-            uploadModal.close();
+            getPicture();
         }).fail((jqXHR, textStatus) => {
             if (jqXHR.status == 415)
                 alert('This file is not supported!!');
             else 
                 alert('file upload fail!!');
+        });
+    })
+}
+
+function getPicture() {
+    $.ajax({
+        url: 'cars/picture',
+        method: 'GET',
+        type: 'GET'
+    }).done((data) => {
+        galleryItemHtml = '';
+
+        data.forEach((value) => {
+            galleryItemHtml +=
+                  '<div class="gallery-card">'
+                + '  <img src=' + value.thumbnail_path + '>'
+                + '</div>'
         })
+        
+        $('#gallery').html(galleryItemHtml);
     })
 }
 
 $(document).ready(() => {
+    getPicture();
     setUploadEvent();
 });
