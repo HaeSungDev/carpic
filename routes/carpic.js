@@ -11,7 +11,7 @@ const storage = multer.diskStorage({
     },
     filename: (req, file, cb) => {
         req.file = file;
-        cb(null, file.originalname);
+        cb(null, file.originalname.replace(/\s+/g, ''));
     },
 });
 // 파일 확장자 확인 필터
@@ -30,9 +30,9 @@ const router = express.Router();
 // POST 메소드로 이미지 업로드 요청 처리.
 router.post('/', upload.single('carpic'), (req, res, next) => {
     if (req.isMatch) {
-        gm(path.resolve(__dirname, '../public/images/' + req.file.originalname))
+        gm(path.resolve(__dirname, '../public/images/' + req.file.originalname.replace(/\s+/g, '')))
             .noProfile()
-            .thumb(300, 300, path.resolve(__dirname, '../public/thumbnail/' + req.file.originalname), (err) => {if (err) console.log(err)});
+            .thumb(300, 300, path.resolve(__dirname, '../public/thumbnail/' + req.file.originalname.replace(/\s+/g, '')), (err) => {if (err) console.log(err)});
         res.sendStatus(200);
     } else {
         res.sendStatus(415);
