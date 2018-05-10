@@ -5,13 +5,16 @@
   margin: 8px auto;
 }
 
-#gallery {
-  width: 90%;
-  margin: 0 auto;
+.gallery-card {
+  margin: 16px;
+  width: 300px;
+  display: inline-block;
 }
 
-.gallery-card {
-  padding: 1em;
-  width: 20%;
-  display: inline-block;
+#gallery {
+  width: 90%;
+  margin: 16px auto 0px;
+  display:flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
 }
