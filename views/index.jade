@@ -32,4 +32,20 @@ block content
         | UPLOAD
       a.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
         | CLOSE
+
+  div#loginModal.modal
+    div.modal-content(style="text-align: center")
+      h3 로그인
+      div.file-field.input-field
+        div.btn
+          span Select Picture
+          input#selectFile(type="file" accept=".png,.jpg,.bmp,.gif")
+        div.file-path-wrapper
+          input#selectFileName.file-path.validate(type="text")
+      img#previewCarPic.upload-car-pic
+    div.modal-footer(style="text-align: center")
+      a#uploadCarPicBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
+        | UPLOAD
+      a.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
+        | CLOSE
       

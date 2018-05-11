@@ -1,6 +1,6 @@
-var connection = require('../config/dbconn');
+const connection = require('../config/dbconn');
 
-var dao = {
+const dao = {
     query: function(sql, params) {
         return new Promise(function (resolve, reject) {
             connection.query(sql, params, function (error, results, fields) {
