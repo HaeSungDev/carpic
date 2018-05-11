@@ -1,8 +1,5 @@
-const $ = require('jquery');
-const Modal = require('./Modal');
-const uploadEvent = require('./uploadEvent')
 
-function getPicture() {
+module.exports = function pictureListEvent() {
     $.ajax({
         url: 'cars/picture',
         method: 'GET',
@@ -20,8 +17,3 @@ function getPicture() {
         $('#gallery').html(galleryItemHtml);
     })
 }
-
-$(document).ready(() => {
-    getPicture();
-    uploadEvent();
-});

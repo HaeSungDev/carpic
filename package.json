@@ -19,6 +19,9 @@
     "mysql": "^2.15.0"
   },
   "devDependencies": {
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
     "webpack": "^4.6.0",
     "webpack-cli": "^2.0.15"
   }
