@@ -1,3 +1,6 @@
+const $ = require('jquery');
+const Modal = require('./Modal');
+const pictureListEvent = require('./pictureListEvent');
 
 module.exports = function uploadEvent() {
     const uploadModal = new Modal($('#uploadModal'), () => {
@@ -33,7 +36,7 @@ module.exports = function uploadEvent() {
             type: 'POST'
         }).done(() => {
             alert('upload success!!');
-            getPicture();
+            pictureListEvent();
         }).fail((jqXHR, textStatus) => {
             if (jqXHR.status == 415)
                 alert('This file is not supported!!');
