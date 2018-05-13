@@ -39,14 +39,14 @@ block content
         h3 로그인
         div.row
           div.input-field.col.s12
-            input#userid.validate(type="text")
+            input#userid.validate(type="text" name="userid")
             label(for="userid") 아이디
         div.row
           div.input-field.col.s12
-            input#passwd.validate(type="password")
+            input#passwd.validate(type="password" name="passwd")
             label(for="passwd") 비밀번호
       div.modal-footer(style="text-align: center")
-        a#loginBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
+        button#loginBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
           | LOGIN
         a#loginModalCloseBtn.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
           | CLOSE
