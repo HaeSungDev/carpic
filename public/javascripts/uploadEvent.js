@@ -43,5 +43,5 @@ module.exports = function uploadEvent() {
             else 
                 alert('file upload fail!!');
         });
-    })
+    });
 }

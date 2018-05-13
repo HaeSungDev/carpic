@@ -2,11 +2,6 @@ var express = require('express');
 var router = express.Router();
 var dao = require('../common/dao');
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('login');
-});
-
 router.post('/', async function(req, res, next) {
   var userid = req.body.userid;
   var passwd = req.body.passwd;
@@ -14,9 +9,9 @@ router.post('/', async function(req, res, next) {
   var isPassed = await check(userid, passwd);
 
   if (isPassed) {
-    res.end('login passed');
+    res.json({result: 'success'});
   } else {
-    res.end('login failed');
+    res.json({result: 'fail'});
   }
 });
 

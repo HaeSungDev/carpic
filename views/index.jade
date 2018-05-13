@@ -11,7 +11,7 @@ block content
           a#uploadCarPicModalBtn.waves-effect.waves-light.btn.modal-trigger(href="#uploadModal")
             | upload car picture
             i.material-icons.right(style="margin-left: 5px") file_upload
-          a#loginBtn.waves-effect.waves-light.btn.modal-trigger(href="#loginModal" style="margin-left: 5px")
+          a#loginModalBtn.waves-effect.waves-light.btn.modal-trigger(href="#loginModal" style="margin-left: 5px")
             | Login
 
   div#gallery
@@ -34,19 +34,20 @@ block content
         | CLOSE
 
   div#loginModal.modal(style="width: 500px")
-    div.modal-content(style="text-align: center")
-      h3 로그인
-      div.row
-        div.input-field.col.s12
-          input#userid.validate(type="text")
-          label(for="userid") 아이디
-      div.row
-        div.input-field.col.s12
-          input#passwd.validate(type="password")
-          label(for="passwd") 비밀번호
-    div.modal-footer(style="text-align: center")
-      a#uploadCarPicBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
-        | LOGIN
-      a.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
-        | CLOSE
+    form#loginForm
+      div.modal-content(style="text-align: center")
+        h3 로그인
+        div.row
+          div.input-field.col.s12
+            input#userid.validate(type="text")
+            label(for="userid") 아이디
+        div.row
+          div.input-field.col.s12
+            input#passwd.validate(type="password")
+            label(for="passwd") 비밀번호
+      div.modal-footer(style="text-align: center")
+        a#loginBtn.waves-effect.waves-light.btn(style="margin-right: 8px")
+          | LOGIN
+        a#loginModalCloseBtn.modal-action.modal-close.waves-effect.waves-light.btn(href="#!")
+          | CLOSE
       
