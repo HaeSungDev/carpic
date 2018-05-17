@@ -29,6 +29,11 @@ const router = express.Router();
 
 // POST 메소드로 이미지 업로드 요청 처리.
 router.post('/', upload.single('carpic'), (req, res, next) => {
+    if (!req.session.user) {
+        res.sendStatus(401);
+        return;
+    }
+
     if (req.isMatch) {
         gm(path.resolve(__dirname, '../public/images/' + req.file.originalname.replace(/\s+/g, '')))
             .noProfile()
@@ -54,6 +59,9 @@ router.get('/', (req, res) => {
         });
         res.send(carpicList);
     });
+});
+
+router.use((err, req, res, next) => {
 });
 
 module.exports = router;

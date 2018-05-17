@@ -1,14 +1,17 @@
-var express = require('express');
-var router = express.Router();
-var dao = require('../common/dao');
+const express = require('express');
+const router = express.Router();
+const dao = require('../common/dao');
 
 router.post('/', async function(req, res, next) {
-  var userid = req.body.userid;
-  var passwd = req.body.passwd;
+  const userid = req.body.userid;
+  const passwd = req.body.passwd;
 
-  var isPassed = await check(userid, passwd);
+  const isPassed = await check(userid, passwd);
 
   if (isPassed) {
+    if (!req.session.user) {
+      req.session.user = userid;
+    }
     res.json({result: 'success'});
   } else {
     res.json({result: 'fail'});
@@ -16,10 +19,10 @@ router.post('/', async function(req, res, next) {
 });
 
 async function check(userid, passwd) {
-  var sql = `select * from user 
+  const sql = `select * from user 
   where userid = ? and passwd = password(?)`;
-  var params = [userid, passwd];
-  var results = await dao.query(sql, params);
+  const params = [userid, passwd];
+  const results = await dao.query(sql, params);
   
   return results.length == 1;
 }
