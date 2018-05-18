@@ -19,7 +19,8 @@ module.exports = function loginEvent() {
             alert('login success!');
             $('#loginModalCloseBtn')[0].click();
         }).fail((jqXHR, textStatus) => {
-            if (jqXHR.status === '401') {
+            console.log(jqXHR);
+            if (jqXHR.status === 401) {
                 alert('ID or Password is wrong');
             } else {
                 alert('server error');

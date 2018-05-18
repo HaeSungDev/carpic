@@ -47,8 +47,10 @@ router.post('/', upload.single('carpic'), (req, res, next) => {
 // GET 메소드로 이미지 리스트의 경로 요청 처리.
 router.get('/', (req, res) => {
     fs.readdir('public/thumbnail', (err, files) => {
-        if (err)
+        if (err) {
             res.send([]);
+            return;
+        }
 
         const carpicList = [];
         files.forEach((value) => {

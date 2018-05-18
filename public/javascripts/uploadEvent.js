@@ -38,10 +38,17 @@ module.exports = function uploadEvent() {
             alert('upload success!!');
             pictureListEvent();
         }).fail((jqXHR, textStatus) => {
-            if (jqXHR.status == 415)
+            if (jqXHR.status === 415) {
                 alert('This file is not supported!!');
-            else 
+            } else if (jqXHR.status === 401) {
+                alert('Please, login');
+                $('#uploadModalCloseBtn')[0].click();
+                setTimeout(() => {
+                    $('#loginModalBtn').click();
+                }, 100);
+            } else { 
                 alert('file upload fail!!');
+            }
         });
     });
 }
