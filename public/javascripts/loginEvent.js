@@ -16,14 +16,14 @@ module.exports = function loginEvent() {
             data: $('#loginForm').serialize(),
             method: 'POST',
         }).done((data) => {
-            if (data.result === 'success') {
-                alert('login success!');
-            } else {
-                alert('login fail!');
-            }
+            alert('login success!');
             $('#loginModalCloseBtn')[0].click();
         }).fail((jqXHR, textStatus) => {
-            alert('error occurred during the request!');
+            if (jqXHR.status === '401') {
+                alert('ID or Password is wrong');
+            } else {
+                alert('server error');
+            }
         });
     })
 }

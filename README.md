@@ -10,7 +10,7 @@ git clone https://github.com/HaeSungDev/carpic.git
 cd carpic
 npm install
 npx webpack
-npm run start
+npm run dev:start
 ```
 ### 개발 스택
 

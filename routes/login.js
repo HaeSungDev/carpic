@@ -12,9 +12,9 @@ router.post('/', async function(req, res, next) {
     if (!req.session.user) {
       req.session.user = userid;
     }
-    res.json({result: 'success'});
+    res.sendStatus(200);
   } else {
-    res.json({result: 'fail'});
+    res.sendStatus(401);
   }
 });
 
