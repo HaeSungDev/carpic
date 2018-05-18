@@ -12,3 +12,11 @@ npm install
 npx webpack
 npm run start
 ```
+### 개발 스택
+
+* node
+* express
+* mariadb
+* redis session storage
+* jade template engine
+* jquery
