@@ -28,6 +28,14 @@ router.post('/', async function(req, res, next) {
   }
 });
 
+router.delete('/', (req, res) => {
+  if (req.session.userid) {
+    req.destroy();
+  } 
+
+  res.sendStatus(204);
+});
+
 async function check(userid, passwd) {
   const sql = `select * from user 
   where userid = ? and passwd = password(?)`;
