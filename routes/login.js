@@ -29,11 +29,11 @@ router.post('/', async function(req, res, next) {
 });
 
 router.delete('/', (req, res) => {
-  if (req.session.userid) {
-    req.destroy();
+  if (req.session.user) {
+    req.session.destroy();
   } 
 
-  res.sendStatus(204);
+  res.sendStatus(200);
 });
 
 async function check(userid, passwd) {

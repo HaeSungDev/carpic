@@ -6,19 +6,33 @@ module.exports = {
         $('#userid').val('');
         $('#passwd').val('');
     }),
+    activeLogin: function() {
+        $('#loginModalBtn').text('LOGIN');
+        $('#loginModalBtn').attr('href', '#loginModal');
+        $('#loginModalBtn').addClass('modal-trigger');
+    },
+    activeLogout: function() {
+        $('#loginModalBtn').text('LOGOUT');
+        $('#loginModalBtn').attr('href', '#!');
+        $('#loginModalBtn').removeClass('modal-trigger');
+        $('#loginModalBtn').on('click', () => {
+            $.ajax({
+                url: 'login',
+                method: 'DELETE',
+            }).done(() => {
+                this.activeLogin();
+            });
+        })
+    },
     // 로그인 체크
     checkLogin: function() {
         $.ajax({
             url: 'login',
             method: 'GET',
         }).done(() => {
-            $('#loginModalBtn').text('LOGOUT');
-            $('#loginModalBtn').attr('href', '#!');
-            $('#loginModalBtn').removeClass('modal-trigger');
+            this.activeLogout();
         }).fail((jqXHR, textStatus) => {
-            $('#loginModalBtn').text('LOGIN');
-            $('#loginModalBtn').attr('href', '#loginModal');
-            $('#loginModalBtn').addClass('modal-trigger');
+            this.activeLogin();
         });
     },
     // 로그인 이벤트 설정
@@ -32,9 +46,7 @@ module.exports = {
             }).done((data) => {
                 alert('login success!');
                 $('#loginModalCloseBtn')[0].click();
-                $('#loginModalBtn').text('LOGOUT');
-                $('#loginModalBtn').attr('href', '#!');
-                $('#loginModalBtn').removeClass('modal-trigger');
+                this.activeLogout();
             }).fail((jqXHR, textStatus) => {
                 if (jqXHR.status === 401) {
                     alert('ID or Password is wrong');
