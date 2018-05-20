@@ -1,10 +1,11 @@
 const $ = require('jquery');
-const loginEvent = require('./loginEvent');
+const loginHandler = require('./loginHandler');
 const uploadEvent = require('./uploadEvent');
 const pictureListEvent = require('./pictureListEvent');
 
 $(document).ready(() => {
-    loginEvent();
+    loginHandler.checkLogin();
+    loginHandler.loginEvent();
     pictureListEvent();
     uploadEvent();
 });

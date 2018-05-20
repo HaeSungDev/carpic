@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const Modal = require('./Modal');
 const pictureListEvent = require('./pictureListEvent');
+const loginHandler = require('./loginHandler');
 
 module.exports = function uploadEvent() {
     const uploadModal = new Modal($('#uploadModal'), () => {
@@ -9,9 +10,7 @@ module.exports = function uploadEvent() {
         $('#previewCarPic').attr('src', '');
         $('#previewCarPic').css('display', 'none');
     });
-
-    $('#uploadCarPicModalBtn').on('click', () => { uploadModal.open() });
-
+    
     $('#selectFile').on('change', (event) => {
         const reader = new FileReader();
         reader.onload = () => {
@@ -27,6 +26,7 @@ module.exports = function uploadEvent() {
 
         formData.append('carpic', $('#selectFile')[0].files[0]);
 
+        loginHandler.checkLogin();
         $.ajax({
             url: 'cars/picture',
             data: formData,
@@ -44,7 +44,7 @@ module.exports = function uploadEvent() {
                 alert('Please, login');
                 $('#uploadModalCloseBtn')[0].click();
                 setTimeout(() => {
-                    $('#loginModalBtn').click();
+                    $('#loginModalBtn')[0].click();
                 }, 100);
             } else { 
                 alert('file upload fail!!');

@@ -8,10 +8,6 @@ class Modal {
             }
         })[0];
     }
-
-    open() {
-        this.instance.open();
-    }
 }
 
 module.exports = Modal;
