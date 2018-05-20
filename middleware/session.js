@@ -8,6 +8,6 @@ module.exports = session({
     resave: false,
     saveUninitialized: true,
     cookie: {
-        maxAge: 100000 - (new Date().getTimezoneOffset() * 60 * 1000),
+        maxAge: 1800000 - (new Date().getTimezoneOffset() * 60 * 1000),
     },
 });
