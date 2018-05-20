@@ -2,6 +2,16 @@ const express = require('express');
 const router = express.Router();
 const dao = require('../common/dao');
 
+router.get('/', function(req, res) {
+  if (!req.session.user) {
+    res.sendStatus(401);
+  } else {
+    res.json({
+      userid: req.session.user
+    })
+  }
+});
+
 router.post('/', async function(req, res, next) {
   const userid = req.body.userid;
   const passwd = req.body.passwd;
