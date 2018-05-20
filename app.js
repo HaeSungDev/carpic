@@ -9,6 +9,7 @@ var sessionMiddleware = require('./middleware/session');
 var indexRouter = require('./routes/index');
 var carpicRouter = require('./routes/carpic');
 var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
 
 var app = express();
 
@@ -26,6 +27,7 @@ app.use(sessionMiddleware);
 app.use('/', indexRouter);
 app.use('/cars/picture', carpicRouter);
 app.use('/login', loginRouter);
+app.use('/login', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
